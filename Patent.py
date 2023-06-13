@@ -7,24 +7,27 @@ class Juridical:
         self.address = None         # 주소
         self.code = None            # 구분코드
 
+    def setJuridical(self, name, englishName, country, address, code):
+        self.name = name
+        self.englishName = name
+        self.country = country
+        self.address = address
+        self.code = code
+
 # 특허 문서의 사항을 저장하는 클래스
 class PatentForm:
     def __init__(self):
         self.treeReference = None
 
         # 문서 사항
-        self.claim = None                       # 청구항
         self.abstract = None                    # 초록
-
-        # IPC
-        self.ipcDate = None                     # 분류기준 개정날짜
-        self.ipcCode = None                     # 분류코드
+        self.claim = None                       # 청구항
         
         # 발명인
-        self.inventor = Juridical()
+        self.inventor = list()
         
         # 출원인
-        self.applican = Juridical()
+        self.applicant = Juridical()
 
         # 대리인
         self.agent = Juridical()
@@ -39,3 +42,14 @@ class PatentForm:
         self.priorityClaimCountry = None               # 주장국가
         self.priorityClaimDate = None                  # 주장날짜
         self.priorityClaimCode = None                  # 주장구분코드 
+
+    def print(self):
+        for inventor in self.inventor:
+            print("발명인 ", self.inventor.name, "(",self.inventor.englishName, ")")
+        print("출원인 ", self.applicant.name, "(",self.applicant.englishName, ")")
+        print("대리인 ", self.agant.name, "(",self.agent.englishName, ")")
+        
+        print("요약")
+        print(self.abstract)
+        print("청구항")
+        print(self.claim)
